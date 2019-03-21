@@ -11,7 +11,6 @@ class Button():
         self.color = ic
         self.thickness = 2
         self.text_pos = ((x+(w/2)-self.text_surface.get_width()/2), (y+(h/2)-self.text_surface.get_height()/2))
-        self.active = False
 
     def handle_event(self, pygame, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
