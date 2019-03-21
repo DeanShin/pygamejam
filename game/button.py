@@ -1,9 +1,9 @@
 class Button():
 
-    def __init__(self, pygame, fontsize, x, y, w, h, ic, hc, ac, text=''):
+    def __init__(self, pygame, fontpath, fontsize, x, y, w, h, ic, hc, ac, text=''):
         self.rect = pygame.Rect(x, y, w, h)
         self.text = text
-        self.font = pygame.font.Font("./resources/fonts/SoukouMincho.ttf", fontsize)
+        self.font = pygame.font.Font(fontpath, fontsize)
         self.text_surface = self.font.render(text, True, ic, (63,63,63))
         self.ac = ac
         self.hc = hc
