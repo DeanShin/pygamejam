@@ -33,6 +33,5 @@ class MoneyGenerator():
         return cost            
     def draw(self, window):
         window.blit(self.text, (0, 0))
-        pass
 
     
