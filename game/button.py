@@ -25,7 +25,7 @@ class Button():
             mouse_hovering = False
         self.color = self.hc if mouse_hovering else self.ic
 
-    def draw(self, pygame, window)
+    def draw(self, pygame, window):
         # Blit the rect.
         pygame.draw.rect(window, self.color, self.rect, self.thickness)
         # Blit the text.
