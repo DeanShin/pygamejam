@@ -1,17 +1,18 @@
 class MoneyGenerator():
     def __init__(self, font, name, mps0, cst0, mgfn = "{}^2", cgfn = "{}**2"):
         self.font = font
-        self.name = ""
+        self.name = name
         self.level = 1
         self.money_per_second = mps0
         self.cost_to_upgrade = cst0
         self.money_growth_func = mgfn
         self.cost_growth_func = cgfn
-        self.text = self.font.render("Level: {}".format(self.level), \
-            True, (255,255,255))
-    def update(self):
+        self.render_text()
+    def render_text(self):
         #RERENDER TEXT
-        self.text = self.font.render("Level: {}".format(self.level), \
+        self.text1 = self.font.render(self.name, \
+            True, (255,255,255))
+        self.text2 = self.font.render("Level: {}    MPS: {}".format(self.level, self.money_per_second), \
             True, (255,255,255))
     def level_up(self):
         self.level += 1
@@ -19,7 +20,7 @@ class MoneyGenerator():
             eval(self.money_growth_func.format(self.money_per_second))
         self.cost_to_upgrade = \
             eval(self.cost_growth_func.format(self.cost_to_upgrade))
-        self.update()
+        self.render_text()
     def get_money(self):
         return self.money_per_second
     def get_cost(self):
@@ -30,8 +31,6 @@ class MoneyGenerator():
         for i in range(n):
             cost += temp
             temp = eval(self.cost_growth_func.format(temp))
-        return cost            
-    def draw(self, window):
-        window.blit(self.text, (0, 0))
-
-    
+        return cost
+    def get_text(self):
+        return (self.text1, self.text2)
