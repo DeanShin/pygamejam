@@ -5,13 +5,13 @@ import math
 
 from pygame.locals import K_ESCAPE, K_RETURN, K_w, K_a, K_s, K_d
 
-from button import Button as Bn
+from ui import UI
+from button import Button as BN
 from money_generator import MoneyGenerator as MG
 
 
 pygame.init()
-pygame.font.init()         
-print(pygame.font.get_fonts())
+pygame.font.init()
 pygame.display.set_caption('Money')
 window_dims = (900 , 600)
 window = pygame.display.set_mode(window_dims)
@@ -27,18 +27,18 @@ textpos = [window_dims[0] // 2, window_dims[1] // 2]
 
 font_sml = pygame.font.SysFont('arial.ttf', int(window_dims[1] / 40))
 
-gen1 = MG(font_sml, "Jorje", 1, 25, "({}*2)//1+1", "{}*2")\
+gens = []
+gens.append(MG(font_sml, "A", 1, 25, "({}*2)//1+1", "{}*2"))
 
+game_ui = UI(pygame)
 # GAME EVENT LOOP
 game = True
 while game:
   # EVENT LOOP
   for event in pygame.event.get():
-    if event.type == pygame.QUIT:
-      
-      sys.exit()
-      game = False
     if event.type == pygame.KEYDOWN:
+      if event.key == K_ESCAPE:
+        sys.exit()
       if event.key == K_w:
         textpos[1]-=10
       if event.key == K_a:
@@ -55,4 +55,5 @@ while game:
   window.fill(background)
   # DRAW TEXT
   window.blit(text_big, tuple(textpos))
-  gen1.draw(window)
+  # DRAW UI
+  game_ui.draw(pygame, window)
