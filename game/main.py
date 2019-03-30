@@ -28,11 +28,11 @@ textpos = [window_dims[0] // 2, window_dims[1] // 2]
 font_sml = pygame.font.SysFont('arial.ttf', int(window_dims[1] / 30))
 
 gens = []
-gens.append(MG(font_sml, "Alan, the Indomitable", 1, 25, "({}*2)//1+1", "{}*2"))
-gens.append(MG(font_sml, "Blargh, the Yargh", 3, 70, "({}*2)//1+1", "{}*2"))
-gens.append(MG(font_sml, "C, the Ceaseless", 10, 200, "({}*2)//1+1", "{}*2"))
+gens.append(MG(pygame, 0, font_sml, "Alan, the Indomitable", 1, 25, "({}*2)//1+1", "{}*2"))
+gens.append(MG(pygame, 1, font_sml, "Blargh, the Yargh", 3, 70, "({}*2)//1+1", "{}*2"))
+gens.append(MG(pygame, 2, font_sml, "C, the Ceaseless", 10, 200, "({}*2)//1+1", "{}*2"))
 print(len(gens))
-game_ui = UI(pygame, len(gens))
+ui = UI(pygame)
 # GAME EVENT LOOP
 game = True
 while game:
@@ -51,7 +51,11 @@ while game:
         textpos[0]+=10
         for gen in gens:
           gen.level_up()
-      
+    if event.type == pygame.MOUSEBUTTONDOWN:
+      ui.handle_event(gens, pygame, event)
+
+  ui.hover_check(gens, pygame.mouse.get_pos())
+
   pygame.display.flip()
   clock.tick(FPS)
   # DRAW BACKGROUND
@@ -59,4 +63,4 @@ while game:
   # DRAW TEXT
   window.blit(text_big, tuple(textpos))
   # DRAW UI
-  game_ui.draw(pygame, window, gens)
+  ui.draw(pygame, window, gens)
