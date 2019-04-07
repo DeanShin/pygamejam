@@ -9,7 +9,6 @@ from ui import UI
 from button import Button as BN
 from money_generator import MoneyGenerator as MG
 
-
 pygame.init()
 pygame.font.init()
 pygame.display.set_caption('Money')
@@ -17,7 +16,7 @@ window_dims = (900 , 600)
 window = pygame.display.set_mode(window_dims)
 background = (63,63,63)
 FPS = 30.0
-clock = pygame.time.Clock()   
+clock = pygame.time.Clock()
 
 fontpath = "./resources/Dosis-Regular.ttf"
 

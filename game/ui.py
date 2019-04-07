@@ -1,6 +1,3 @@
-from money_generator import MoneyGenerator as MG
-from button import Button as BN
-
 class UI():
     def __init__(self, pygame):
         self.surface = pygame.Surface((900,600))
