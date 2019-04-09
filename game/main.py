@@ -27,7 +27,7 @@ textpos = [window_dims[0] // 2, window_dims[1] // 2]
 
 font_sml = pygame.font.SysFont('arial.ttf', int(window_dims[1] / 30))
 
-n_coins = 30
+n_coins = 60
 coins = []
 for n in range(n_coins):
   coins.append(Coin())
@@ -59,6 +59,8 @@ while game:
     if event.type == pygame.MOUSEBUTTONDOWN:
       if event.button == 1: # LEFT CLICK
         ui.handle_event(gens, pygame, event)
+        for coin in coins:
+          coin.handle_event(pygame, event)
         
 
   ui.hover_check(gens, pygame.mouse.get_pos())
