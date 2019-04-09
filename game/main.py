@@ -8,6 +8,7 @@ from pygame.locals import K_ESCAPE, K_RETURN, K_w, K_a, K_s, K_d
 from ui import UI
 from button import Button as BN
 from money_generator import MoneyGenerator as MG
+from coin import Coin
 
 pygame.init()
 pygame.font.init()
@@ -25,6 +26,11 @@ text_big = font_big.render("GAME JAM", True, (255, 255, 255), background)
 textpos = [window_dims[0] // 2, window_dims[1] // 2]
 
 font_sml = pygame.font.SysFont('arial.ttf', int(window_dims[1] / 30))
+
+n_coins = 30
+coins = []
+for n in range(n_coins):
+  coins.append(Coin())
 
 gens = []
 gens.append(MG(pygame, 0, font_sml, "Alan, the Indomitable", 1, 25, "({}*2)//1+1", "{}*2"))
@@ -51,7 +57,9 @@ while game:
         for gen in gens:
           gen.level_up()
     if event.type == pygame.MOUSEBUTTONDOWN:
-      ui.handle_event(gens, pygame, event)
+      if event.button == 1: # LEFT CLICK
+        ui.handle_event(gens, pygame, event)
+        
 
   ui.hover_check(gens, pygame.mouse.get_pos())
 
@@ -59,7 +67,9 @@ while game:
   clock.tick(FPS)
   # DRAW BACKGROUND
   window.fill(background)
-  # DRAW TEXT
-  window.blit(text_big, tuple(textpos))
+  # DRAW COINS
+  for coin in coins:
+    coin.update()
+    window.blit(coin.image,(coin.x,coin.y))
   # DRAW UI
   ui.draw(pygame, window, gens)
