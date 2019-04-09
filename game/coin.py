@@ -1,7 +1,6 @@
 import random
 from constants import *
 import pygame
-import math
 
 random.seed(3127)
 
@@ -28,17 +27,10 @@ class Coin(pygame.sprite.Sprite):
         self.height = int(self.original_image.get_height()*self.scale)
         ## Scale image
         self.image = pygame.transform.scale(self.original_image, (self.width, self.height))
-        ## Rotate image
+        # Rotate image
         self.image = pygame.transform.rotate(self.image, self.speed*360)
 
     def update(self):
         self.y += self.speed
         if self.y > window_height:
-            self.y = random.randint(-200,-40)
-    
-    def handle_event(self, pygame, event):
-        ## COLLISION DETECTION ON CLICK
-        if event.pos[0] > self.x and event.pos[0] < self.x+self.z and \
-        event.pos[1] > self.y and event.pos[1] < self.y+self.z:
-            print("Sprite clicked!")
-            self.y += window_height
+            self.y = random.randint(-200,-20)

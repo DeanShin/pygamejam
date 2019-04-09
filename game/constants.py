@@ -5,3 +5,4 @@ ui_window_width=190
 n_coins=100
 min_z=1
 max_z=100
+fontpath = "./resources/rainyhearts.ttf"
