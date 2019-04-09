@@ -33,7 +33,10 @@ class Player():
         self.money += self.mps
         text3 = self.font.render("${}".format(self.money), True, (255,255,255))
         self.buttons[3].update_text(text3)
-
+    def money_isClicked(self):
+        self.money += self.mpc
+        text3 = self.font.render("${}".format(self.money), True, (255,255,255))
+        self.buttons[3].update_text(text3)
     def draw(self, pygame, sur):
         for button in self.buttons:
             button.draw(pygame, sur)

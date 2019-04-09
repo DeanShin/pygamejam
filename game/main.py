@@ -44,7 +44,7 @@ while game:
       if event.button == 1: # LEFT CLICK
         ui.handle_event(pygame, event)
         for coin in coins:
-          coin.handle_event(pygame, event)
+          coin.handle_event(pygame, event,ui.player)
 
   ui.hover_check(pygame.mouse.get_pos())
 
