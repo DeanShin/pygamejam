@@ -1,6 +1,6 @@
 class Button():
 
-    def __init__(self, pygame, x, y, w, h, hasfunction=True, id=0):
+    def __init__(self, pygame, x, y, w, h, hasfunction=True, id=-1):
         self.rect = pygame.Rect(x, y, w, h)
         self.mode = 0
         self.thickness = 2

@@ -11,4 +11,3 @@ fontpath = "./resources/rainyhearts.ttf"
 n_coins=100
 min_z=1
 max_z=100
-
