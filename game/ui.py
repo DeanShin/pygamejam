@@ -1,8 +1,9 @@
+from constants import fontpath
 class UI():
     def __init__(self, pygame):
         self.surface = pygame.Surface((900,600))
         self.surface.set_colorkey((0,0,0))
-        self.font = pygame.font.SysFont('arial.ttf', 20)
+        self.font = pygame.font.Font("./resources/rainyhearts.ttf", 20)
         self.bgcolor = (15,15,255)
         self.olcolor = (255,255,255)
         self.main_rects = []

@@ -9,23 +9,20 @@ from ui import UI
 from button import Button as BN
 from money_generator import MoneyGenerator as MG
 from coin import Coin
+from constants import *
 
 pygame.init()
 pygame.font.init()
 pygame.display.set_caption('Money')
 window_dims = (900 , 600)
 window = pygame.display.set_mode(window_dims)
-background = (63,63,63)
-FPS = 30.0
 clock = pygame.time.Clock()
 
-fontpath = "./resources/Dosis-Regular.ttf"
+# font_big = pygame.font.SysFont('arial.ttf', int(window_dims[1] / 20))
+# text_big = font_big.render("GAME JAM", True, (255, 255, 255), background)
+# textpos = [window_dims[0] // 2, window_dims[1] // 2]
 
-font_big = pygame.font.SysFont('arial.ttf', int(window_dims[1] / 20))
-text_big = font_big.render("GAME JAM", True, (255, 255, 255), background)
-textpos = [window_dims[0] // 2, window_dims[1] // 2]
-
-font_sml = pygame.font.SysFont('arial.ttf', int(window_dims[1] / 30))
+font_sml = pygame.font.Font(fontpath, int(window_dims[1] / 30))
 
 n_coins = 60
 coins = []
