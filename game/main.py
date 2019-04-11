@@ -15,7 +15,7 @@ window = pygame.display.set_mode(window_dims)
 clock = pygame.time.Clock()
 
 musicFile = "resources/slotMachineNoise.wav"
-coinClickNoise = pygame.mixer.Sound("resources/coinClick.wav")
+coinClickNoise = pygame.mixer.Sound("resources/marioCoinNoise.wav")
 
 pygame.mixer.music.load(musicFile)
 pygame.mixer.music.play(-1)
