@@ -14,7 +14,7 @@ pygame.display.set_caption('Money')
 window = pygame.display.set_mode(window_dims)
 clock = pygame.time.Clock()
 
-musicFile = "resources/slotMachineNoise.wav"
+musicFile = "resources/FreeJump.mp3"
 coinClickNoise = pygame.mixer.Sound("resources/marioCoinNoise.wav")
 
 pygame.mixer.music.load(musicFile)
