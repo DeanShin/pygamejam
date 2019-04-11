@@ -35,10 +35,11 @@ class Coin(pygame.sprite.Sprite):
         if self.y > window_height:
             self.y = random.randint(-200,-40)
     
-    def handle_event(self, pygame, event,player):
+    def handle_event(self, pygame, event):
         ## COLLISION DETECTION ON CLICK
         if event.pos[0] > self.x and event.pos[0] < self.x+self.z and \
         event.pos[1] > self.y and event.pos[1] < self.y+self.z:
             print("Sprite clicked!")
-            player.money_isClicked()
             self.y += window_height
+            return 0
+        else: return -1

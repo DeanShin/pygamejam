@@ -1,12 +1,12 @@
 class Button():
 
-    def __init__(self, pygame, x, y, w, h, hasfunction=True, id=-1):
+    def __init__(self, pygame, x, y, w, h, hasfunction=True, button_id=-1):
         self.rect = pygame.Rect(x, y, w, h)
         self.mode = 0
         self.thickness = 2
         self.active = False
         self.hasfunction = hasfunction
-        self.id = id
+        self.button_id = button_id
 
     def update_text(self, text_sur):
         self.text_surface = text_sur
@@ -18,8 +18,8 @@ class Button():
             if self.rect.collidepoint(event.pos):
                 self.mode = 2
                 print("Boop.")
-                print(self.id)
-                return self.id
+                print(self.button_id)
+                return self.button_id
                 
     def hover_check(self, mouse_pos):
         if self.hasfunction: self.mode = 1 if self.rect.collidepoint(mouse_pos) else 0

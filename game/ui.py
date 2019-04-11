@@ -1,6 +1,8 @@
 from constants import fontpath
 from money_generator import MoneyGenerator as MG
 from player import Player
+from coin import Coin
+
 class UI():
     def __init__(self, pygame):
         self.surface = pygame.Surface((900,600))
@@ -25,18 +27,36 @@ class UI():
         # Player information
         self.player = Player(pygame, self.main_rects[1], font2)
 
+        n_coins = 60
+        self.coins = []
+        for n in range(n_coins):
+            self.coins.append(Coin())
+
     def handle_event(self, pygame, event):
         for gen in self.gens:
-            temp = gen.handle_event(pygame, event)
-            if temp == 0:
+            temp = gen.handle_event(pygame, event, self.player.money)
+            if temp[0] == 0:
+                print(temp)
+                print("Insufficient funds!")
+            elif temp[0] == 1:
                 self.player.update_mps(sum(gen.get_mps() for gen in self.gens))
+        for coin in self.coins:
+            temp = coin.handle_event(pygame, event)
+            if temp == 0:
+                self.player.money_isClicked()
+    
     def hover_check(self, mouse_pos):
         for gen in self.gens:
             gen.hover_check(mouse_pos)
         pass
     def add_money(self):
         self.player.update_money()
+
     def draw(self, pygame, sur):
+        # DRAW COINS
+        for coin in self.coins:
+            coin.update()
+            sur.blit(coin.image,(coin.x,coin.y))
         for main_rect in self.main_rects:
             pygame.draw.rect(self.surface, self.bgcolor, main_rect)
             pygame.draw.rect(self.surface, self.olcolor, main_rect, 10)
