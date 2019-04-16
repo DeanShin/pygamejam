@@ -21,10 +21,18 @@ class Coin(pygame.sprite.Sprite):
         self.y = random.randint(0,window_height)
         self.z = random.randint(min_z,max_z)
         self.scale = self.z/max_z
-        self.original_image = pygame.image.load("images/bitcoin_small.png").convert_alpha()
         self.speed = self.z/10
         self.pos = (self.x, self.y)
         self.angle = self.speed*360
+
+
+        green_random = random.randint(0,100)
+        if green_random > 90:
+            self.original_image = pygame.image.load("images/greenbitcoin_small.png").convert_alpha()
+            self.coin_value = 10
+        else:
+            self.original_image = pygame.image.load("images/bitcoin_small.png").convert_alpha()
+            self.coin_value = 1
 
         ## Update scaled image width and height
         self.width = int(self.original_image.get_width()*self.scale)
