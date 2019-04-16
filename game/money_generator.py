@@ -1,4 +1,5 @@
 from button import Button
+from global_functions import *
 
 class MoneyGenerator():
     def __init__(self, pygame, button_id, font, name, mps0, cst0, mgfn = "{}^2", cgfn = "{}**2"):
@@ -31,7 +32,7 @@ class MoneyGenerator():
         #RERENDER TEXT
         text0 = self.font.render(self.name, True, (255,255,255))
         self.buttons[0].update_text(text0)
-        text1 = self.font.render("Level: {}    MPS: {}".format(self.level, self.money_per_second), True, (255,255,255))
+        text1 = self.font.render("Level: {}    MPS: {}".format(self.level, format_int(self.money_per_second)), True, (255,255,255))
         self.buttons[1].update_text(text1)
         text2 = self.font.render("Buy 1", True, (255,255,255))
         self.buttons[2].update_text(text2)
@@ -48,11 +49,11 @@ class MoneyGenerator():
         self.cost_to_upgrade = \
             eval(self.cost_growth_func.format(self.cost_to_upgrade))
         #print(n)
-        ## Recursion 
+        ## Recursion
         n -= 1
         if n > 0: self.level_up(n)
         ## When done leveling up, make text up to date with new information.
-        else: 
+        else:
             self.update_text()
 
     def handle_event(self, pygame, event, player_funds):
@@ -63,20 +64,19 @@ class MoneyGenerator():
                 if button_id != -1:
                     temp = [0, 0] # Temp[0] = 0 if not enough money to purchase money gen
                     if button_id == 2:
-                        temp[1] = self.get_cost(1) 
-                        print(temp[1])
+                        temp[1] = self.get_cost(1)
                         if player_funds >= temp[1]:
                             self.level_up(1)
                             temp[0] = 1
                         return temp
                     elif button_id == 3:
-                        temp[1] = self.get_cost(10) 
+                        temp[1] = self.get_cost(10)
                         if player_funds >= temp[1]:
                             self.level_up(10)
                             temp[0] = 1
                         return temp
                     elif button_id == 4:
-                        temp[1] = self.get_cost(100) 
+                        temp[1] = self.get_cost(100)
                         if player_funds >= temp[1]:
                             self.level_up(100)
                             temp[0] = 1

@@ -1,5 +1,6 @@
 from constants import *
 from button import Button
+from global_functions import *
 class Player():
     def __init__(self, pygame, rect, font):
         self.rect = rect
@@ -7,7 +8,7 @@ class Player():
 
         self.mps = 1
         self.mpc = 1
-        self.money = 0
+        self.money = 5643879506324079084525136789340
 
         self.name_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+5, 160, 30, False)
         self.mps_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+35, 160, 30, False)
@@ -21,22 +22,27 @@ class Player():
         text0 = self.font.render("Clicker", True, (255,255,255))
         self.buttons[0].update_text(text0)
         self.update_mps(0)
-        text2 = self.font.render("MPC: {}".format(self.mpc), True, (255,255,255))
+        text2 = self.font.render("MPC: {}".format(format_int(self.mpc)), True, (255,255,255))
         self.buttons[2].update_text(text2)
-        self.update_money()
+        self.update_money(-2)
 
     def update_mps(self, mps_sum):
         self.mps = mps_sum
-        text1 = self.font.render("MPS: {}".format(mps_sum), True, (255,255,255))
+        text1 = self.font.render("MPS: {}".format(format_int(mps_sum)), True, (255,255,255))
         self.buttons[1].update_text(text1)
-    def update_money(self):
-        self.money += self.mps
-        text3 = self.font.render("${}".format(self.money), True, (255,255,255))
+
+    def update_money(self, money):
+        if money==-2: # do nothing
+            pass
+        elif money==-1: # -1 is money generator
+            self.money += self.mps
+        elif money==0: # 0 is money click
+            self.money += self.mpc
+        else: # any other value is money spent
+            self.money -= money
+        text3 = self.font.render("${}".format(format_int(self.money)), True, (255,255,255))
         self.buttons[3].update_text(text3)
-    def money_isClicked(self):
-        self.money += self.mpc
-        text3 = self.font.render("${}".format(self.money), True, (255,255,255))
-        self.buttons[3].update_text(text3)
+
     def draw(self, pygame, sur):
         for button in self.buttons:
             button.draw(pygame, sur)

@@ -17,12 +17,13 @@ class Button():
         if self.rect.collidepoint(pygame.mouse.get_pos()):
             if self.rect.collidepoint(event.pos):
                 self.mode = 2
-                print("Boop.")
-                print(self.button_id)
+                # print("Boop.")
+                # print(self.button_id)
                 return self.button_id
-                
+
     def hover_check(self, mouse_pos):
         if self.hasfunction: self.mode = 1 if self.rect.collidepoint(mouse_pos) else 0
+        # From here, return temp var in order to display cost to upgrade for player
 
     def draw(self, pygame, sur, ic=(15,15,255), hc=(255,0,255), ac=(0,127,255)):
         if self.mode == 0: color = ic

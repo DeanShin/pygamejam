@@ -36,22 +36,22 @@ class UI():
         for gen in self.gens:
             temp = gen.handle_event(pygame, event, self.player.money)
             if temp[0] == 0:
-                print(temp)
                 print("Insufficient funds!")
             elif temp[0] == 1:
                 self.player.update_mps(sum(gen.get_mps() for gen in self.gens))
-                self.player.money -= temp[1]
+                #self.player.money -= temp[1]
+                self.player.update_money(temp[1])
         for coin in self.coins:
             temp = coin.handle_event(pygame, event)
             if temp == 0:
-                self.player.money_isClicked()
+                self.player.update_money(0)
 
     def hover_check(self, mouse_pos):
         for gen in self.gens:
             gen.hover_check(mouse_pos)
         pass
     def add_money(self):
-        self.player.update_money()
+        self.player.update_money(-1)
 
     def draw(self, pygame, sur):
         # DRAW COINS
