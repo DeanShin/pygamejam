@@ -44,7 +44,11 @@ class Player():
         if money is None: # do nothing
             pass
         elif type is 'gen': # -1 is money generator
-            self.money += self.mps
+            if money is False:
+                self.money += self.mps
+            else:
+                self.money -= money
+
         elif type is 'coin': # 0 is money click
             self.money += money
         else: # any other value is money spent
