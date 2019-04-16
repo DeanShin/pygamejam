@@ -8,7 +8,7 @@ class Player():
 
         self.mps = 1
         self.mpc = 1
-        self.money = 5643879506324079084525136789340
+        self.money = 0
 
         self.name_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+5, 160, 30, False)
         self.mps_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+35, 160, 30, False)
