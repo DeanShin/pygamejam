@@ -57,31 +57,61 @@ class MoneyGenerator():
             self.update_text()
 
     def handle_event(self, pygame, event, player_funds):
-        temp = [-1, 0] # Temp[0] = -1 if no button is clicked or button has no function
+        temp = {'flag':None, 'cost': 0}  # Temp[0] = -1 if no button is clicked or button has no function
         if self.rect.collidepoint(event.pos):
             for button in self.buttons:
                 button_id = button.handle_event(pygame, event)
                 if button_id != -1:
-                    temp = [0, 0] # Temp[0] = 0 if not enough money to purchase money gen
+                    # if not enough money to purchase money gen
+                    temp['flag'] = 'insufficient'
                     if button_id == 2:
-                        temp[1] = self.get_cost(1)
-                        if player_funds >= temp[1]:
+                        temp['cost'] = self.get_cost(1)
+                        # if you have enough funds
+                        if player_funds >= temp['cost']:
                             self.level_up(1)
-                            temp[0] = 1
+                            temp['flag'] = 'sufficient'
+                            return temp
                         return temp
                     elif button_id == 3:
-                        temp[1] = self.get_cost(10)
-                        if player_funds >= temp[1]:
+                        temp['cost'] = self.get_cost(10)
+                        if player_funds >= temp['cost']:
                             self.level_up(10)
-                            temp[0] = 1
+                            temp['flag'] = 'sufficient'
+                            return temp
                         return temp
                     elif button_id == 4:
-                        temp[1] = self.get_cost(100)
-                        if player_funds >= temp[1]:
+                        temp['cost'] = self.get_cost(100)
+                        if player_funds >= temp['cost']:
                             self.level_up(100)
-                            temp[0] = 1
+                            temp['flag'] = 'sufficient'
+                            return temp
                         return temp
         return temp
+        # temp = [-1, 0] # Temp[0] = -1 if no button is clicked or button has no function
+        # if self.rect.collidepoint(event.pos):
+        #     for button in self.buttons:
+        #         button_id = button.handle_event(pygame, event)
+        #         if button_id != -1:
+        #             temp = [0, 0] # Temp[0] = 0 if not enough money to purchase money gen
+        #             if button_id == 2:
+        #                 temp[1] = self.get_cost(1)
+        #                 if player_funds >= temp[1]:
+        #                     self.level_up(1)
+        #                     temp[0] = 1
+        #                 return temp
+        #             elif button_id == 3:
+        #                 temp[1] = self.get_cost(10)
+        #                 if player_funds >= temp[1]:
+        #                     self.level_up(10)
+        #                     temp[0] = 1
+        #                 return temp
+        #             elif button_id == 4:
+        #                 temp[1] = self.get_cost(100)
+        #                 if player_funds >= temp[1]:
+        #                     self.level_up(100)
+        #                     temp[0] = 1
+        #                 return temp
+        # return temp
 
     def hover_check(self, mouse_pos):
         if self.rect.collidepoint(mouse_pos):

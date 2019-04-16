@@ -1,4 +1,4 @@
-from constants import fontpath
+from constants import fontpath, n_coins
 from money_generator import MoneyGenerator as MG
 from player import Player
 from coin import Coin
@@ -27,7 +27,7 @@ class UI():
         # Player information
         self.player = Player(pygame, self.main_rects[1], font2)
 
-        n_coins = 60
+        # n_coins = 60
         self.coins = []
         for n in range(n_coins):
             self.coins.append(Coin())
@@ -35,23 +35,23 @@ class UI():
     def handle_event(self, pygame, event):
         for gen in self.gens:
             temp = gen.handle_event(pygame, event, self.player.money)
-            if temp[0] == 0:
+            if temp['flag'] == 'insufficient':
                 print("Insufficient funds!")
-            elif temp[0] == 1:
+            elif temp['flag'] == 'sufficient':
                 self.player.update_mps(sum(gen.get_mps() for gen in self.gens))
                 #self.player.money -= temp[1]
-                self.player.update_money(temp[1])
+                self.player.update_money(temp['cost'],'gen')
+
         for coin in self.coins:
             temp = coin.handle_event(pygame, event)
-            if temp == 0:
-                self.player.update_money(0)
+            self.player.update_money(temp,'coin')
 
     def hover_check(self, mouse_pos):
         for gen in self.gens:
             gen.hover_check(mouse_pos)
         pass
     def add_money(self):
-        self.player.update_money(-1)
+        self.player.update_money(False,'gen')
 
     def draw(self, pygame, sur):
         # DRAW COINS

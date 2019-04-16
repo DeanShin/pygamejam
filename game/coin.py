@@ -25,7 +25,6 @@ class Coin(pygame.sprite.Sprite):
         self.pos = (self.x, self.y)
         self.angle = self.speed*360
 
-
         green_random = random.randint(0,100)
         if green_random > 90:
             self.original_image = pygame.image.load("images/greenbitcoin_small.png").convert_alpha()
@@ -51,8 +50,8 @@ class Coin(pygame.sprite.Sprite):
         ## COLLISION DETECTION ON CLICK
         if event.pos[0] > self.x and event.pos[0] < self.x+self.z and \
         event.pos[1] > self.y and event.pos[1] < self.y+self.z:
-            print("Sprite clicked!")
+            # print("Sprite clicked!")
             pygame.mixer.Sound.play(coinClickNoise)
             self.y += window_height
-            return 0
-        else: return -1
+            return self.coin_value
+        else: return None

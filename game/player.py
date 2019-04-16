@@ -24,20 +24,29 @@ class Player():
         self.update_mps(0)
         text2 = self.font.render("MPC: {}".format(format_int(self.mpc)), True, (255,255,255))
         self.buttons[2].update_text(text2)
-        self.update_money(-2)
+        self.update_money(None,None)
 
     def update_mps(self, mps_sum):
         self.mps = mps_sum
         text1 = self.font.render("MPS: {}".format(format_int(mps_sum)), True, (255,255,255))
         self.buttons[1].update_text(text1)
 
-    def update_money(self, money):
-        if money==-2: # do nothing
+    def update_money(self, money, type):
+        # if money is None: # do nothing
+        #     pass
+        # elif money is -1: # -1 is money generator
+        #     self.money += self.mps
+        # elif money==0: # 0 is money click
+        #     self.money += self.mpc
+        # else: # any other value is money spent
+        #     self.money -= money
+
+        if money is None: # do nothing
             pass
-        elif money==-1: # -1 is money generator
+        elif type is 'gen': # -1 is money generator
             self.money += self.mps
-        elif money==0: # 0 is money click
-            self.money += self.mpc
+        elif type is 'coin': # 0 is money click
+            self.money += money
         else: # any other value is money spent
             self.money -= money
         text3 = self.font.render("${}".format(format_int(self.money)), True, (255,255,255))
