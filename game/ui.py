@@ -20,9 +20,9 @@ class UI():
 
         # Money generators
         self.gens = []
-        self.gens.append(MG(pygame, 0, font1, "Alan, the Indomitable", 1, 25, "int({}*1.2)//1+1", "{}*2"))
-        self.gens.append(MG(pygame, 1, font1, "Blargh, the Yargh", 3, 70, "int({}*1.1)//1+1", "{}*2"))
-        self.gens.append(MG(pygame, 2, font1, "C, the Ceaseless", 10, 200, "int({}*1.1)//1+1", "{}*2"))
+        self.gens.append(MG(pygame, 0, font1, "Alan, the Indomitable", 1, 25, "int({}*1.04)//1+1", "{}*1.12"))
+        self.gens.append(MG(pygame, 1, font1, "Blargh, the Yargh", 3, 70, "int({}*1.03)//1+1", "{}*1.23"))
+        self.gens.append(MG(pygame, 2, font1, "C, the Ceaseless", 10, 200, "int({}*1.03)//1+1", "{}*1.14"))
 
         # Player information
         self.player = Player(pygame, self.main_rects[1], font2)
@@ -47,9 +47,16 @@ class UI():
             self.player.update_money(temp,'coin')
 
     def hover_check(self, mouse_pos):
+        displayed_something = False
         for gen in self.gens:
-            gen.hover_check(mouse_pos)
-        pass
+            upgrade_cost = gen.hover_check(mouse_pos)
+            if upgrade_cost is not False:
+                displayed_something = True
+                self.player.update_cost(upgrade_cost)
+        if not displayed_something:
+            self.player.update_cost()
+
+        
     def add_money(self):
         self.player.update_money(False,'gen')
 

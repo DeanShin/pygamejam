@@ -14,7 +14,8 @@ class Player():
         self.mps_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+35, 160, 30, False)
         self.mpc_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+65, 160, 30, False)
         self.money_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+95, 160, 30, False)
-        self.buttons = (self.name_btn,self.mps_btn,self.mpc_btn,self.money_btn)
+        self.cost_btn = Button(pygame, self.rect[0]+10, self.rect[1]+5+125, 160, 30, False)
+        self.buttons = (self.name_btn,self.mps_btn,self.mpc_btn,self.money_btn,self.cost_btn)
         self.update_text()
 
     def update_text(self):
@@ -25,6 +26,7 @@ class Player():
         text2 = self.font.render("MPC: {}".format(format_int(self.mpc)), True, (255,255,255))
         self.buttons[2].update_text(text2)
         self.update_money(None,None)
+        self.update_cost(None)
 
     def update_mps(self, mps_sum):
         self.mps = mps_sum
@@ -55,6 +57,12 @@ class Player():
             self.money -= money
         text3 = self.font.render("${}".format(format_int(self.money)), True, (255,255,255))
         self.buttons[3].update_text(text3)
+
+    def update_cost(self, cost=None):
+        if cost is None:
+            text4 = self.font.render("", True, (255,255,255))
+        else: text4 = self.font.render("-${}".format(format_int(cost)), True, (255,255,255))
+        self.buttons[4].update_text(text4)
 
     def draw(self, pygame, sur):
         for button in self.buttons:
