@@ -4,7 +4,7 @@ import pygame
 import math
 
 
-random.seed(3127)
+# random.seed(3127)
 
 pygame.init()
 coinClickNoise = pygame.mixer.Sound("resources/marioCoinNoise.wav")
