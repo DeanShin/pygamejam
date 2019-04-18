@@ -20,9 +20,9 @@ class UI():
 
         # Money generators
         self.gens = []
-        self.gens.append(MG(pygame, 0, font1, "Alan, the Indomitable", 1, 25, "int({}*1.04)//1+1", "{}*1.12"))
-        self.gens.append(MG(pygame, 1, font1, "Blargh, the Yargh", 3, 70, "int({}*1.03)//1+1", "{}*1.23"))
-        self.gens.append(MG(pygame, 2, font1, "C, the Ceaseless", 10, 200, "int({}*1.03)//1+1", "{}*1.14"))
+        self.gens.append(MG(pygame, 0, font1, "Alan, the Indomitable", 1, 25, "int({}*1.04)//1+1", "{}*1.12//1+1"))
+        self.gens.append(MG(pygame, 1, font1, "Blargh, the Yargh", 3, 70, "int({}*1.03)//1+1", "{}*1.23//1"))
+        self.gens.append(MG(pygame, 2, font1, "C, the Ceaseless", 10, 200, "int({}*1.03)//1+1", "{}*1.14//1+1"))
 
         # Player information
         self.player = Player(pygame, self.main_rects[1], font2)
